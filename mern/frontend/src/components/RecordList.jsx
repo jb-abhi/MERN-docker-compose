@@ -36,12 +36,13 @@ const Record = (props) => (
 );
 
 export default function RecordList() {
+  const API_URL = import.meta.env.VITE_REACT_APP_API_URL;
   const [records, setRecords] = useState([]);
 
   // This method fetches the records from the database.
   useEffect(() => {
     async function getRecords() {
-      const response = await fetch(`${REACT_APP_API_URL}/record/`);
+      const response = await fetch(`${API_URL}/record/`);
       if (!response.ok) {
         const message = `An error occurred: ${response.statusText}`;
         console.error(message);
@@ -56,7 +57,7 @@ export default function RecordList() {
 
   // This method will delete a record
   async function deleteRecord(id) {
-    await fetch(`${REACT_APP_API_URL}/record/${id}`, {
+    await fetch(`${API_URL}/record/${id}`, {
       method: "DELETE",
     });
     const newRecords = records.filter((el) => el._id !== id);
