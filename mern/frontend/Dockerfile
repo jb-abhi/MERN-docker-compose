@@ -8,5 +8,6 @@ RUN npm run build
 
 # Use Nginx to serve the build
 FROM nginx:latest
+WORKDIR /app
 COPY --from=build /app/dist /usr/share/nginx/html
 EXPOSE 80
