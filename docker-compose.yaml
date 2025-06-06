@@ -12,8 +12,6 @@ services:
       - private  
   backend:
     build: ./mern/backend
-    ports:
-      - "5050:5050"
     networks:
       - private
     environment:
@@ -22,16 +20,12 @@ services:
       - mongodb
   frontend:
     build: ./mern/frontend
-    ports:
-      - "5173:5173" 
     env_file:
       - ./mern/frontend/.env
     networks:
       - private
   mongodb:
     image: mongo:latest
-    ports:
-      - "27017:27017"
     networks:
       - private
     volumes:
